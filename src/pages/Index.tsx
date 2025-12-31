@@ -1,17 +1,27 @@
 import { motion } from 'framer-motion';
-import { Target, Flame, Trophy, CheckCircle2, Sparkles } from 'lucide-react';
+import { Target, Flame, Trophy, CheckCircle2, Sparkles, LogOut } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { useHabits } from '@/hooks/useHabits';
+import { useAuth } from '@/context/AuthContext';
 import { ProgressRing } from '@/components/ProgressRing';
 import { HabitCard } from '@/components/HabitCard';
 import { StatCard } from '@/components/StatCard';
 import { AddHabitDialog } from '@/components/AddHabitDialog';
 import { MotivationalQuote } from '@/components/MotivationalQuote';
 import { WeeklyHeatmap } from '@/components/WeeklyHeatmap';
+import { Button } from '@/components/ui/button';
 import { AnimatePresence } from 'framer-motion';
 
 const Index = () => {
   const { habits, toggleHabit, addHabit, deleteHabit, getStats } = useHabits();
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
   const stats = getStats();
+
+  const handleLogout = () => {
+    logout();
+    navigate('/auth');
+  };
 
   const greeting = () => {
     const hour = new Date().getHours();
@@ -36,7 +46,24 @@ const Index = () => {
               </div>
               <span className="text-xl font-bold text-foreground">HabitFlow</span>
             </motion.div>
-            <AddHabitDialog onAdd={addHabit} />
+            <div className="flex items-center gap-4">
+              <AddHabitDialog onAdd={addHabit} />
+              <div className="flex items-center gap-3 border-l border-border/50 pl-4">
+                <div className="text-sm text-right hidden sm:block">
+                  <p className="font-medium text-foreground">{user?.name}</p>
+                  <p className="text-xs text-muted-foreground">{user?.email}</p>
+                </div>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={handleLogout}
+                  className="hover:bg-destructive/10"
+                  title="Logout"
+                >
+                  <LogOut className="text-destructive" size={20} />
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
       </header>

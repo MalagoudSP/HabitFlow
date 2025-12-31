@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Habit, HabitStats, HabitCategory } from '@/types/habit';
-
-const STORAGE_KEY = 'habitflow-habits';
+import { useAuth } from '@/context/AuthContext';
 
 const defaultHabits: Habit[] = [
   {
@@ -62,17 +61,20 @@ const defaultHabits: Habit[] = [
 ];
 
 export function useHabits() {
+  const { user } = useAuth();
+  const storageKey = user ? `habitflow-habits-${user.id}` : 'habitflow-habits';
+
   const [habits, setHabits] = useState<Habit[]>(() => {
     if (typeof window !== 'undefined') {
-      const stored = localStorage.getItem(STORAGE_KEY);
+      const stored = localStorage.getItem(storageKey);
       return stored ? JSON.parse(stored) : defaultHabits;
     }
     return defaultHabits;
   });
 
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(habits));
-  }, [habits]);
+    localStorage.setItem(storageKey, JSON.stringify(habits));
+  }, [habits, storageKey]);
 
   const toggleHabit = (id: string) => {
     const today = new Date().toISOString().split('T')[0];
@@ -131,3 +133,4 @@ export function useHabits() {
 
   return { habits, toggleHabit, addHabit, deleteHabit, getStats };
 }
+
