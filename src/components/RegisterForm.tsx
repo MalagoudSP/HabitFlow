@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Sparkles, Mail, Lock, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -20,6 +21,7 @@ export const RegisterForm = ({ onSwitchToLogin }: RegisterFormProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const { register } = useAuth();
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -41,6 +43,8 @@ export const RegisterForm = ({ onSwitchToLogin }: RegisterFormProps) => {
         title: 'Success',
         description: 'Account created and logged in!',
       });
+      // Navigate to home page after successful registration
+      navigate('/');
     } catch (error) {
       toast({
         title: 'Error',
