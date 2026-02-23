@@ -82,7 +82,7 @@ export const LoginForm = ({ onSwitchToRegister }: LoginFormProps) => {
                 <Input
                   id="email"
                   type="email"
-                  placeholder="you@example.com"
+                  placeholder="spmallu5@gmail.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
