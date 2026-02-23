@@ -3,20 +3,47 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>HabitFlow - Build Better Habits</title>
-    <meta name="description" content="Track your daily habits, build streaks, and achieve your goals with HabitFlow. A beautiful and intuitive habit tracking app." />
+    <title>HabitFlow - AI-Powered Habit Tracking</title>
+    <meta name="description" content="Build better habits with AI-powered insights, gamification, social features, and advanced analytics. Track your daily habits and achieve your goals with HabitFlow." />
     <meta name="author" content="HabitFlow" />
+    <meta name="theme-color" content="#1655D5">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="HabitFlow">
 
-    <meta property="og:title" content="HabitFlow - Build Better Habits" />
-    <meta property="og:description" content="Track your daily habits, build streaks, and achieve your goals with HabitFlow." />
+    <meta property="og:title" content="HabitFlow - AI-Powered Habit Tracking" />
+    <meta property="og:description" content="Build better habits with AI insights, gamification, and social features. Track your daily habits and achieve your goals." />
     <meta property="og:type" content="website" />
+    <meta property="og:image" content="/og-image.png" />
 
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@HabitFlow" />
+    <meta name="twitter:title" content="HabitFlow - AI-Powered Habit Tracking" />
+    <meta name="twitter:description" content="Build better habits with AI insights and advanced analytics" />
+    <meta name="twitter:image" content="/og-image.png" />
 
- 
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+    
+    <!-- Apple Web App Support -->
+    <link rel="apple-touch-icon" href="/icon-192.png">
+    <link rel="icon" type="image/svg+xml" href="/vite.svg">
   </head>
 
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- PWA Service Worker Registration -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').catch(() => {
+            // Service worker registration failed, app will still work in online mode
+          });
+        });
+      }
+    </script>
   </body>
 </html>

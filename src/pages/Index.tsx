@@ -9,6 +9,7 @@ import { StatCard } from '@/components/StatCard';
 import { AddHabitDialog } from '@/components/AddHabitDialog';
 import { MotivationalQuote } from '@/components/MotivationalQuote';
 import { WeeklyHeatmap } from '@/components/WeeklyHeatmap';
+import AppNavigation from '@/components/AppNavigation';
 import { Button } from '@/components/ui/button';
 import { AnimatePresence } from 'framer-motion';
 
@@ -32,8 +33,11 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      {/* App Navigation */}
+      <AppNavigation />
+
       {/* Header */}
-      <header className="sticky top-0 z-40 glass border-b border-border/50">
+      <header className="sticky top-16 z-40 glass border-b border-border/50">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <motion.div
