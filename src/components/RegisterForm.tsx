@@ -94,7 +94,7 @@ export const RegisterForm = ({ onSwitchToLogin }: RegisterFormProps) => {
                 <Input
                   id="name"
                   type="text"
-                  placeholder="John Doe"
+                  placeholder="Malagoud Patil"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   required
@@ -115,7 +115,7 @@ export const RegisterForm = ({ onSwitchToLogin }: RegisterFormProps) => {
                 <Input
                   id="email"
                   type="email"
-                  placeholder="you@example.com"
+                  placeholder="spmallu5@gmail.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
