@@ -31,8 +31,8 @@ export const LoginForm = ({ onSwitchToRegister }: LoginFormProps) => {
         title: 'Success',
         description: 'Logged in successfully!',
       });
-      // Navigate to home page after successful login
-      navigate('/');
+      // Navigate to dashboard after successful login
+      navigate('/dashboard');
     } catch (error) {
       toast({
         title: 'Error',

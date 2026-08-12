@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
+const API_BASE_URL = '/api';
 
 const apiClient = axios.create({
   baseURL: API_BASE_URL,
@@ -18,6 +18,12 @@ apiClient.interceptors.request.use((config) => {
   return config;
 });
 
+export const authAPI = {
+  login: (data: { email: string; password: string }) => apiClient.post('/auth/login', data),
+  register: (data: { email: string; name: string; password: string }) => apiClient.post('/auth/register', data),
+  profile: () => apiClient.get('/auth/profile'),
+};
+
 // API Endpoints
 export const habitAPI = {
   // Habits
@@ -29,11 +35,11 @@ export const habitAPI = {
 
   // Completions
   completeHabit: (habitId: string, data: any) => apiClient.post(`/habits/${habitId}/complete`, data),
-  getCompletions: (habitId: string, startDate: string, endDate: string) => 
+  getCompletions: (habitId: string, startDate: string, endDate: string) =>
     apiClient.get(`/habits/${habitId}/completions`, { params: { startDate, endDate } }),
 
   // Analytics
-  getHabitAnalytics: (habitId: string, period: string) => 
+  getHabitAnalytics: (habitId: string, period: string) =>
     apiClient.get(`/habits/${habitId}/analytics`, { params: { period } }),
   getUserStats: () => apiClient.get('/habits/stats'),
   getHeatmapData: (period: string) => apiClient.get('/analytics/heatmap', { params: { period } }),

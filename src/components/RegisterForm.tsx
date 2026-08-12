@@ -43,8 +43,8 @@ export const RegisterForm = ({ onSwitchToLogin }: RegisterFormProps) => {
         title: 'Success',
         description: 'Account created and logged in!',
       });
-      // Navigate to home page after successful registration
-      navigate('/');
+      // Navigate to dashboard after successful registration
+      navigate('/dashboard');
     } catch (error) {
       toast({
         title: 'Error',
